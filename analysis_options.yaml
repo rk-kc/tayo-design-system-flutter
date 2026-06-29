@@ -1,0 +1,18 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # Project preferences
+    prefer_single_quotes: true
+    sort_constructors_first: true
+    avoid_unnecessary_containers: true
+    use_super_parameters: true
+    # Slightly stricter defaults — public API surface deserves docs and
+    # explicit returns.
+    public_member_api_docs: false  # not enforced; flip to warning once API stabilizes
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true

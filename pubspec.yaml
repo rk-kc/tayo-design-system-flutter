@@ -1,0 +1,37 @@
+name: tayo_design_system
+description: >
+  Tayo design system — Flutter port. Dark-first, glass-themed mobile UI kit
+  for the Tayo shared-photo-album product. Mirrors the React design system at
+  ../design-system/.
+version: 0.1.0
+publish_to: 'none'
+
+environment:
+  sdk: ^3.5.0
+  flutter: ">=3.24.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Lucide icons — same family used by the React design system. The
+  # `_flutter` package is actively maintained and tracks upstream lucide.
+  lucide_icons_flutter: ^3.0.0
+  # Date formatting for TayoDatePicker. `intl` is a Flutter-team package.
+  intl: ^0.19.0
+  # Disk + memory cache for `TayoAvatar`'s network images. Without it,
+  # every list scroll re-fetches avatar PNGs from R2.
+  cached_network_image: ^3.4.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: Libre Baskerville
+      fonts:
+        # Variable font with a `wght` axis (400–700). One file, all weights —
+        # styles apply weight via TextStyle.fontVariations at the call site.
+        - asset: fonts/LibreBaskerville-VariableFont_wght.ttf
