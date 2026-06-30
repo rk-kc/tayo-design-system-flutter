@@ -26,31 +26,34 @@ class TayoBottomSheet extends StatelessWidget {
     // its parent allows (the SheetRoute's ConstrainedBox / Align gives
     // a max but no min). Without it, the sheet wraps to content width
     // and looks pinched on wider phones.
-    return SizedBox(
-      width: double.infinity,
-      child: SafeArea(
-        top: false,
-        child: ClipRRect(
-          borderRadius: TayoRadii.topXl2,
-          child: ColoredBox(
-            color: TayoColors.ink.withOpacity(0.80),
-            child: GlassSurface(
-              borderRadius: TayoRadii.topXl2,
-              padding: const EdgeInsets.fromLTRB(24, 12, 24, 40),
-              includeShadow: false,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  if (showHandle) ...<Widget>[
-                    const Align(
-                      alignment: Alignment.center,
-                      child: DragHandle(),
-                    ),
-                    const SizedBox(height: 12),
+    return Material(
+      type: MaterialType.transparency,
+      child: SizedBox(
+        width: double.infinity,
+        child: SafeArea(
+          top: false,
+          child: ClipRRect(
+            borderRadius: TayoRadii.topXl2,
+            child: ColoredBox(
+              color: TayoColors.ink.withOpacity(0.80),
+              child: GlassSurface(
+                borderRadius: TayoRadii.topXl2,
+                padding: const EdgeInsets.fromLTRB(24, 12, 24, 40),
+                includeShadow: false,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    if (showHandle) ...<Widget>[
+                      const Align(
+                        alignment: Alignment.center,
+                        child: DragHandle(),
+                      ),
+                      const SizedBox(height: 12),
+                    ],
+                    child,
                   ],
-                  child,
-                ],
+                ),
               ),
             ),
           ),
