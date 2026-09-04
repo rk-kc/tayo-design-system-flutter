@@ -23,33 +23,41 @@ class TayoDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Stack(
-        children: <Widget>[
-          GlassSurface(
-            borderRadius: TayoRadii.xl,
-            padding: const EdgeInsets.all(24),
-            child: child,
-          ),
-          if (showCloseButton)
-            Positioned(
-              top: 12,
-              right: 12,
-              child: GestureDetector(
-                onTap: onClose ?? () => Navigator.of(context).maybePop(),
-                child: Container(
-                  width: 36,
-                  height: 36,
-                  decoration: BoxDecoration(
-                    color: TayoColors.white08,
-                    shape: BoxShape.circle,
+    // SheetRoute pushes without a Material ancestor — same gap
+    // TayoBottomSheet had (see that file's identical fix). Without this,
+    // a TextField anywhere inside a TayoDialog (e.g. a rename dialog)
+    // throws "No Material widget found" instead of just missing styling,
+    // since TextField hard-requires a Material ancestor to render at all.
+    return Material(
+      type: MaterialType.transparency,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Stack(
+          children: <Widget>[
+            GlassSurface(
+              borderRadius: TayoRadii.xl,
+              padding: const EdgeInsets.all(24),
+              child: child,
+            ),
+            if (showCloseButton)
+              Positioned(
+                top: 12,
+                right: 12,
+                child: GestureDetector(
+                  onTap: onClose ?? () => Navigator.of(context).maybePop(),
+                  child: Container(
+                    width: 36,
+                    height: 36,
+                    decoration: BoxDecoration(
+                      color: TayoColors.white08,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(Icons.close, size: 18, color: Colors.white),
                   ),
-                  child: const Icon(Icons.close, size: 18, color: Colors.white),
                 ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
